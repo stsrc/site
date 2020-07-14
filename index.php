@@ -5,7 +5,7 @@ My first site
 </head>
 	<body>
 		<form action="welcome.php" method="post">
-				Name: <input type="text" name="name"><br>
+				Email: <input type="text" name="email"><br>
 				Password: <input type="text" name="password"><br>
 			<input type="submit" value="Submit">
 		</form>
