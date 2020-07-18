@@ -5,8 +5,7 @@
 	<style>
 		header { text-align: center;
 		 float: center; }
-	section { text-align: center;
-		 float: center; }
+	section { float: center; }
 	aside { float: left; }
 	</style>
 	</head>
