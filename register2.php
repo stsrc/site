@@ -11,7 +11,7 @@
 		$row = $query->fetch();
 		$result = strcmp($row[0], $email);
 		if (strcmp($row[0], $email) == 0) {
-			echo "email already used, get another. Going back to register page in 3 seconds...";
+			echo "wrong email or email already used, get another. Going back to register page in 3 seconds...";
 			header('Refresh: 3; URL=http://127.0.0.1/register.php');
 			$pdo=null;
 		} else {
