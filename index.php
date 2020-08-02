@@ -10,19 +10,22 @@
 		header { text-align: center;
 			float: center; }
 		input { border: none;
-			width: 15em;
-			height: 2em; }
+			height: 2em;
+			width: 100%; }
 		#container {
 			width: 100%;
 			height: 200px;
 		}
 		#one {
-			width: 20%;
+			width: 9%;
 			float:left;
+			font-family: Arial, Helvatica, sans-serif;
+			margin-right: 1%;
 		}
 		#two {
-			width: 80%;
-			float:left;
+			width: 90%;
+			float:right;
+			font-family: Arial, Helvatica, sans-serif;
 		}
 	</style>
 	</head>
@@ -39,7 +42,7 @@
 				<input type="submit" value="Submit" style=>
 			</form>
 			<form action="register.php" method="post">
-				<input type="submit" value="Click here to register">
+				<input type="submit" value="Register">
 			</form>
 		<?php } else { ?>
 			<form action="logout.php" method="post">
@@ -49,11 +52,10 @@
 		 </div>
 		<div id="two"> <h1> first paragraph </h1>
 
-	Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,<br>Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,lorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsum
-
-
-
-
+	Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,<br>Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,lorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumi
+		 <hr>
+		 <h1> Second paragraph </h1>
+			bla bla bla
 		 </div>
 	<div>
 	</body>

@@ -14,8 +14,9 @@ if (strcmp($email, "") == 0) {
 try {
 	$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "user", "password");
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	$query = $pdo->query("SELECT * FROM users WHERE (email='$email' AND password='$password')");
-	$result = $query->setFetchMode(PDO::FETCH_NUM);
+	$query = $pdo->prepare('SELECT * FROM users WHERE (email=? AND password=?)');
+	$query->execute([$email, $password]);
+	$query->setFetchMode(PDO::FETCH_NUM);
 	$row = $query->fetch();
 		$pdo = null;
 		$result = strcmp($row[0], $email);
