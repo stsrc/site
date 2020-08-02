@@ -1,8 +1,8 @@
 <html>
 <body>
 <?php
-	$email=$_POST["email"];
-	$password=$_POST["password"];
+	$email=stripslashes($_POST["email"]);
+	$password=md5(stripslashes($_POST["password"]));
 	try {
 		$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "user", "password");
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -17,8 +17,9 @@
 		} else {
 			$pdo->exec("INSERT INTO users (email, password) VALUES ('$email', '$password')");
 			$pdo=null;
-			echo "Loged in sucesfully, going back in 1 second...";
-			header('Refresh: 1; URL=http://127.0.0.1/welcome.php');
+			echo "Registered successfully, going back in 1 second...";
+			echo "Password = $password";
+			header('Refresh: 10; URL=http://127.0.0.1/index.php');
 		}
 	} catch (PDOException $e) {
 		echo "WRONG! " . $e->getMessage();
