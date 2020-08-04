@@ -49,6 +49,8 @@
 				<input type="submit" value="logout">
 			</form>
 		<?php } ?>
+			<a href=github.com/stsrc>github</a><br>
+			<a href=https://pl.linkedin.com/in/konrad-gotfryd-4aa205136>linkedin</a>
 		 </div>
 		<div id="two"> <h1> first paragraph </h1>
 
