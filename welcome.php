@@ -24,6 +24,12 @@ try {
 
 		if ($result == 0 && $resultPassword == 0) {
 			$_SESSION['email'] = $email;
+			$result = strcmp("admin", $email);
+			if ($result == 0) {
+				$_SESSION['admin'] = true;
+			} else {
+				$_SESSION['admin'] = false;
+			}
 		} else {
 			echo $_SESSION['wrongpassword'] = true;
 		}
