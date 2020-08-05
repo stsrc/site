@@ -6,16 +6,15 @@
 <body>
 <?php
 	$text=$_POST["blognote"];
-	echo $text;
 	try {
 		$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "user", "password");
 		$query=$pdo->prepare('INSERT INTO blog(creation, author, note) VALUES (?, ?, ?)');
-		$creation="11:11:00";
-		$author="kgotfryd";
+		$creation=date('Y-m-d');
+		$author=$_SESSION['email'];
 		$query->execute([$creation, $author, $text]);
-		echo "Done";
-	} catch (PDOException $e) {
-		echo "WRONG!" . $e->getMessage();
+			header('Refresh 1; URL=http://127.0.0.1/index.php');
+		} catch (PDOException $e) {
+			echo "WRONG!" . $e->getMessage();
 	}
 ?>
 </body>

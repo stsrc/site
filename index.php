@@ -57,12 +57,35 @@
 			</form>
 		<?php } ?>
 		 </div>
-		<div id="two"> <h1> first paragraph </h1>
+		 <div id="two">
 
-	Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,<br>Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,Lorem ipsum lorem ipsum, lorem ipsum ipsum,lorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumlorem ipsum ipsumi
-		 <hr>
-		 <h1> Second paragraph </h1>
-			bla bla bla
+<?php
+	try {
+		$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "user", "password");
+		$query=$pdo->prepare('SELECT COUNT(*) FROM blog');
+		$query->execute();
+		$query->setFetchMode(PDO::FETCH_NUM); //TODO: what does it do?
+		$count = $query->fetch();
+
+		$query = $pdo->prepare('SELECT * FROM blog order by creation desc');
+		$query->execute();
+		$query->setFetchMode(PDO::FETCH_NUM);
+		for ($i = 0; $i < intval($count[0]); $i++) {
+			$row = $query->fetch();
+			echo $row[0];
+			echo "<br>";
+			echo "$row[1]";
+			echo "<br>";
+			echo "<br>";
+			echo "$row[2]";
+			echo "<br>";
+			echo "<hr>";
+		}
+
+	} catch (PDOException $e) {
+		echo "WRONG!" . $e->getMessage();
+	}
+?>
 		 </div>
 	<div>
 	</body>
