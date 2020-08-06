@@ -5,12 +5,8 @@
 <html>
 <body>
 <?php
-$email=stripslashes($_POST["email"]);
-$password=md5(stripslashes($_POST["password"]));
-if (strcmp($email, "") == 0) {
-	echo "Log in first";
-	return;
-}
+$email=($_POST["email"]);
+$password=hash('sha256', $_POST["password"]);
 try {
 	$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "user", "password");
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -18,25 +14,26 @@ try {
 	$query->execute([$email, $password]);
 	$query->setFetchMode(PDO::FETCH_NUM);
 	$row = $query->fetch();
-		$pdo = null;
-		$result = strcmp($row[0], $email);
-		$resultPassword = strcmp($row[1], $password);
+	$pdo = null;
+	$result = strcmp($row[0], $email);
+	$resultPassword = strcmp($row[1], $password);
 
-		if ($result == 0 && $resultPassword == 0) {
-			$_SESSION['email'] = $email;
-			$result = strcmp("admin", $email);
-			if ($result == 0) {
-				$_SESSION['admin'] = true;
-			} else {
-				$_SESSION['admin'] = false;
-			}
+	if ($result == 0 && $resultPassword == 0) {
+		$_SESSION['email'] = $email;
+		$result = strcmp("admin@admin.org", $email);
+		if ($result == 0) {
+			$_SESSION['admin'] = true;
 		} else {
-			echo $_SESSION['wrongpassword'] = true;
+			$_SESSION['admin'] = false;
 		}
-		header('location: index.php');
-	} catch (PDOException $e) {
-		echo "Something bad happened";
+		echo $_SESSION['wrongpassword'] = false;
+	} else {
+		echo $_SESSION['wrongpassword'] = true;
 	}
+	header('location: index.php');
+} catch (PDOException $e) {
+	echo "Something bad happened";
+}
 //?>
 </body>
 </html>
