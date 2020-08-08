@@ -6,31 +6,47 @@
 <body>
 <?php
 $email=($_POST["email"]);
-$password=hash('sha256', $_POST["password"]);
-try {
-	$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "user", "password");
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	$query = $pdo->prepare('SELECT * FROM users WHERE (email=? AND password=?)');
-	$query->execute([$email, $password]);
-	$query->setFetchMode(PDO::FETCH_NUM);
-	$row = $query->fetch();
-	$pdo = null;
-	$result = strcmp($row[0], $email);
-	$resultPassword = strcmp($row[1], $password);
+$password=($_POST["password"]);
 
-	if ($result == 0 && $resultPassword == 0) {
-		$_SESSION['email'] = $email;
-		$result = strcmp("admin@admin.org", $email);
-		if ($result == 0) {
-			$_SESSION['admin'] = true;
-		} else {
-			$_SESSION['admin'] = false;
-		}
-		echo $_SESSION['wrongpassword'] = false;
+$email_check = preg_match('~^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$~i', $email);
+$password_check = preg_match('~^[A-Za-z0-9!@#$%^&*()_]{6,20}$~i', $password);
+
+
+$password_hashed=hash('sha256', $password);
+try {
+	if (!$email_check) {
+		echo "Wrong email!";
+		header('Refresh: 3; URL=http://127.0.0.1/index.php');
+	} else if (!$password_check) {
+		echo "Wrong password!";
+		header('Refresh: 3; URL=http://127.0.0.1/index.php');
+		$_SESSION['wrongpassword'] = true;
 	} else {
-		echo $_SESSION['wrongpassword'] = true;
+		$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "user", "password");
+		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$query = $pdo->prepare('SELECT * FROM users WHERE (email=? AND password=?)');
+		$query->execute([$email, $password_hashed]);
+		$query->setFetchMode(PDO::FETCH_NUM);
+		$row = $query->fetch();
+		$pdo = null;
+		$result = strcmp($row[1], $email);
+		$resultPassword = strcmp($row[2], $password_hashed);
+
+		if ($result == 0 && $resultPassword == 0) {
+			$_SESSION['email'] = $email;
+			$result = ($row[0] == 1);
+			if ($result) {
+				$_SESSION['admin'] = true;
+			} else {
+				$_SESSION['admin'] = false;
+			}
+			$_SESSION['wrongpassword'] = false;
+		} else {
+			$_SESSION['wrongpassword'] = true;
+		}
+
+		header('location: index.php');
 	}
-	header('location: index.php');
 } catch (PDOException $e) {
 	echo "Something bad happened";
 }

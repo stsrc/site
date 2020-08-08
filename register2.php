@@ -24,8 +24,8 @@
 			$query->execute([$email]);
 			$query->setFetchMode(PDO::FETCH_NUM);
 			$row = $query->fetch();
-			$result = strcmp($row[0], $email);
-			if (strcmp($row[0], $email) == 0) {
+			$result = strcmp($row[1], $email);
+			if (strcmp($row[1], $email) == 0) {
 				echo "E-mail already used, get another. Going back to register page in 3 seconds...";
 				header('Refresh: 3; URL=http://127.0.0.1/register.php');
 				$pdo=null;
