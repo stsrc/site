@@ -14,7 +14,7 @@
 			width: 100%; }
 		#container {
 			width: 100%;
-			height: 200px;
+			height: 100%;
 		}
 		#one {
 			width: 9%;
@@ -54,40 +54,53 @@
 			<a href=https://pl.linkedin.com/in/konrad-gotfryd-4aa205136>linkedin</a>
 		<?php if (!empty($_SESSION['admin']) && $_SESSION['admin'] == true) { ?>
 			<form action="newblognote.php" method="post">
-				<input type="submit" value="newblognote">
+				<input type="submit" value="new blog note">
 			</form>
 		<?php } ?>
 		 </div>
 		 <div id="two">
 
 <?php
-	try {
-		$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "user", "password");
-		$query=$pdo->prepare('SELECT COUNT(*) FROM blog');
-		$query->execute();
-		$query->setFetchMode(PDO::FETCH_NUM); //TODO: what does it do?
-		$count = $query->fetch();
+		try {
+			$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "user", "password");
+			$query=$pdo->prepare('SELECT COUNT(*) FROM blog');
+			$query->execute();
+			$query->setFetchMode(PDO::FETCH_NUM); //TODO: what does it do?
+			$count = $query->fetch();
 
-		$query = $pdo->prepare('SELECT * FROM blog order by creation desc');
-		$query->execute();
-		$query->setFetchMode(PDO::FETCH_NUM);
-		for ($i = 0; $i < intval($count[0]); $i++) {
-			$row = $query->fetch();
-			echo $row[1];
-			echo "<br>";
-			echo "$row[2]";
-			echo "<br>";
-			echo "<br>";
-			echo "$row[3]";
-			echo "<br>";
-			echo "<hr>";
+			$query = $pdo->prepare('SELECT * FROM blog WHERE blog_id BETWEEN ? and ? order by blog_id desc');
+
+			if (!isset($_SESSION['minimal_blog']) && !isset($_SESSION['maximal_blog'])) {
+				$_SESSION['maximal_blog'] = $count[0];
+				$_SESSION['minimal_blog'] = $count[0] - 4;
+			}
+
+			$query->execute([$_SESSION['minimal_blog'], $_SESSION['maximal_blog']]);
+			$query->setFetchMode(PDO::FETCH_NUM);
+
+			for ($i = 0; $i < $_SESSION['maximal_blog'] - $_SESSION['minimal_blog'] + 1; $i++) {
+				$row = $query->fetch();
+				echo $row[1];
+				echo "<br>";
+				echo "$row[2]";
+				echo "<br>";
+				echo "<br>";
+				echo "$row[3]";
+				echo "<br>";
+				echo "<hr>";
+			}
+		} catch (PDOException $e) {
+			echo "WRONG!" . $e->getMessage();
 		}
-
-	} catch (PDOException $e) {
-		echo "WRONG!" . $e->getMessage();
-	}
 ?>
-		 </div>
-	<div>
+		<form action="select.php" method="post">
+		<?php if ($_SESSION['maximal_blog'] != $count[0]) { ?>
+			<input type="submit" name="newer" value="<<< Newer article">
+		<?php }
+		if ($_SESSION['minimal_blog'] != 1) { ?>
+		 <input type="submit" name="older" value="Older article >>>">
+		<?php } ?>
+		</form>
+		</div>
 	</body>
 </html>
