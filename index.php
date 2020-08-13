@@ -6,28 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<head>
-	<style>
-		header { text-align: center;
-			float: center; }
-		input { border: none;
-			height: 2em;
-			width: 100%; }
-		#container {
-			width: 100%;
-			height: 100%;
-		}
-		#one {
-			width: 9%;
-			float:left;
-			font-family: Arial, Helvatica, sans-serif;
-			margin-right: 1%;
-		}
-		#two {
-			width: 90%;
-			float:right;
-			font-family: Arial, Helvatica, sans-serif;
-		}
-	</style>
+		<link rel="stylesheet" href="index.css" type="text/css">
 	</head>
 	<body>
 	<div id="container">
@@ -110,6 +89,7 @@
 		 <input type="submit" name="older" value="Older article >>>">
 		<?php } ?>
 		</form>
+		</div>
 		</div>
 	</body>
 </html>
