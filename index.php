@@ -19,7 +19,7 @@
 				Wrong password!
 				<?php $_SESSION['wrongpassword'] = false; ?>
 				<?php } ?> <br>
-				<input type="submit" value="Submit" style=>
+				<input type="submit" value="Submit">
 			</form>
 			<form action="register.php" method="post">
 				<input type="submit" value="Register">
