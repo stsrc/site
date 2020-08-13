@@ -16,6 +16,23 @@
 		<div id="two">
 <?php
 try {
+			if (isset($_POST['comment'])) {
+				$text=$_POST["comment"];
+				$text_ok = preg_match('~^.{6,500}$~i', $text);
+				$blog_id = $_POST['hidden'];
+				if ($text_ok) {
+					$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "user", "password");	//TODO remove this boilerplate code
+					$query = $pdo->prepare('INSERT INTO comments(blog_id, creation, author, note) VALUES (?, ?, ?, ?)');
+					date_default_timezone_set("Europe/Warsaw");
+					$creation=date('Y-m-d H:i:s');
+					$author=$_SESSION['email'];
+					$query->execute([$blog_id, $creation, $author, $text]);
+					$text_not_ok=false;
+				} else {
+					$text_not_ok=true;
+				}
+			}
+
 			$blog_id = $_POST['hidden'];
 			$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "user", "password");	//TODO remove this boilerplate code
 			$query = $pdo->prepare('SELECT * FROM blog WHERE blog_id=?');
@@ -41,14 +58,18 @@ try {
 				echo "<br>";
 				echo $row[3];
 				echo "<br>";
-				echo $row[4];
+				$toecho=htmlspecialchars($row[4], ENT_QUOTES);
+				echo "$toecho";
 				echo "<br>";
 			}
 			echo "<hr>";
 			if (isset($_SESSION["email"])) {
-				echo "<form action=\"addcomment.php\" method=\"post\">";
+				echo "<form action=\"comments.php\" method=\"post\">";
 				echo "<textarea name=\"comment\" rows=20 cols=100 style=\"resize:none\">";
 				echo "</textarea><br>";
+				if (isset($text_not_ok) && $text_not_ok) {
+					echo "Comment has to have at least 6 signs and up to 500 signs.";
+				}
 				echo "<input type=\"submit\" value=\"send note\">";
 				echo "<input type=\"hidden\" name=\"hidden\" value=\"$blog_id\">";
 				echo "</form>";

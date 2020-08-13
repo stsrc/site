@@ -30,7 +30,7 @@
 			</form>
 		<?php } ?>
 			<a href=https://github.com/stsrc>github</a><br>
-			<a href=https://pl.linkedin.com/in/konrad-gotfryd-4aa205136>linkedin</a>
+			<a href=https://pl.linkedin.com/in/konrad-gotfryd-4aa205136>linkedin</a><br><br>
 		<?php if (!empty($_SESSION['admin']) && $_SESSION['admin'] == true) { ?>
 			<form action="newblognote.php" method="post">
 				<input type="submit" value="new blog note">
@@ -72,7 +72,7 @@
 				echo "$row[3]";
 				echo "<br>";
 				echo "<form action=\"comments.php\" method=\"post\">";
-				echo "<input type=\"submit\" name=\"submit\" value=\"Comment\" style=\" width:10%; background-color: white;\">"; //TODO; hovering?
+				echo "<input type=\"submit\" name=\"submit\" value=\"Comment\" style=\" width:10%;\">"; //TODO; hovering?
 				echo "<input type=\"hidden\" name=\"hidden\" value=\"$row[0]\">";
 				echo "</form>";
 				echo "<hr>";
