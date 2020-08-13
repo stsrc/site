@@ -75,18 +75,27 @@
 				$_SESSION['minimal_blog'] = $count[0] - 4;
 			}
 
+			if ($count[0] < 5) {
+				$_SESSION['minimal_blog'] = 1;
+				$_SESSION['maximal_blog'] = $count[0];
+			}
+
 			$query->execute([$_SESSION['minimal_blog'], $_SESSION['maximal_blog']]);
 			$query->setFetchMode(PDO::FETCH_NUM);
 
-			for ($i = 0; $i < $_SESSION['maximal_blog'] - $_SESSION['minimal_blog'] + 1; $i++) {
+			for ($i = $_SESSION['minimal_blog']; $i < $_SESSION['maximal_blog'] + 1; $i++) {
 				$row = $query->fetch();
-				echo $row[1];
+				echo "$row[1]";
 				echo "<br>";
 				echo "$row[2]";
 				echo "<br>";
 				echo "<br>";
 				echo "$row[3]";
 				echo "<br>";
+				echo "<form action=\"comments.php\" method=\"post\">";
+				echo "<input type=\"submit\" name=\"submit\" value=\"Comment\" style=\" width:10%; background-color: white;\">"; //TODO; hovering?
+				echo "<input type=\"hidden\" name=\"hidden\" value=\"$row[0]\">";
+				echo "</form>";
 				echo "<hr>";
 			}
 		} catch (PDOException $e) {
