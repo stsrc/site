@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <html>
 <body>
 <?php
@@ -6,8 +9,12 @@
 	$email_check = preg_match('~^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$~i', $email);
 	$password_check = preg_match('~^[A-Za-z0-9!@#$%^&*()_]{6,20}$~i', $password);
 	$password_hashed=hash('sha256', $_POST["password"]);
+	$captcha=$_POST["captcha"];
 
-	if (!$email_check) {
+	if (strcmp($captcha, $_SESSION['captcha']['code'])) {
+		echo "Wrong captcha! Please try again";
+		header('Refresh: 3; URL=http://127.0.0.1/register.php'); //TODO redirections
+	} else if (!$email_check) {
 		echo "Please enter correct email address<br>";
 		echo "Redirecting in 3 seconds...";
 		header('Refresh: 3; URL=http://127.0.0.1/register.php');

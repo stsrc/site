@@ -1,5 +1,8 @@
 <?php
-    session_start();
+	session_start();
+	include("simple-php-captcha.php");
+	$_SESSION['oldcaptcha'] = $_SESSION['captcha']['code'];
+	$_SESSION['captcha'] = simple_php_captcha();
 ?>
 
 <html>
@@ -19,17 +22,15 @@ try {
 			if (isset($_POST['comment'])) {
 				$text=$_POST["comment"];
 				$text_ok = preg_match('~^.{6,500}$~i', $text);
+				$captcha_ok = !strcmp($_POST["captcha"], $_SESSION["oldcaptcha"]);
 				$blog_id = $_POST['hidden'];
-				if ($text_ok) {
+				if ($text_ok && $captcha_ok) {
 					$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "user", "password");	//TODO remove this boilerplate code
 					$query = $pdo->prepare('INSERT INTO comments(blog_id, creation, author, note) VALUES (?, ?, ?, ?)');
 					date_default_timezone_set("Europe/Warsaw");
 					$creation=date('Y-m-d H:i:s');
 					$author=$_SESSION['email'];
 					$query->execute([$blog_id, $creation, $author, $text]);
-					$text_not_ok=false;
-				} else {
-					$text_not_ok=true;
 				}
 			}
 
@@ -67,9 +68,15 @@ try {
 				echo "<form action=\"comments.php\" method=\"post\">";
 				echo "<textarea name=\"comment\" rows=20 cols=100 style=\"resize:none\">";
 				echo "</textarea><br>";
-				if (isset($text_not_ok) && $text_not_ok) {
+				if (isset($text_ok) && !$text_ok) {
 					echo "Comment has to have at least 6 signs and up to 500 signs.";
 				}
+				if (isset($captcha_ok) && !$captcha_ok) {
+					echo "Wrong captcha, please try again<br>";
+				}
+				echo "Captcha:<br>";
+				echo '<img src="' . $_SESSION['captcha']['image_src'] . '" alt="CAPTCHA code"><br>';
+				echo "<input type=\"text\" name=\"captcha\" style=\"background-color: LightGrey; width: 160px;\"><br>";
 				echo "<input type=\"submit\" value=\"send note\">";
 				echo "<input type=\"hidden\" name=\"hidden\" value=\"$blog_id\">";
 				echo "</form>";
