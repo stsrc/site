@@ -13,8 +13,8 @@
 		<div id="one">
 			<?php if(empty($_SESSION['email'])) { ?>
 			<form action="welcome.php" method="post">
-				Email:<br><input type="text" name="email"><br>
-				Password:<br><input type="password" name="password"><br>
+				Email:<br><input type="text" name="email" style="background-color: LightGrey;"><br>
+				Password:<br><input type="password" name="password" style="background-color: LightGrey;"><br>
 				<?php if(!empty($_SESSION['wrongpassword']) && $_SESSION['wrongpassword'] == true) { ?>
 				Wrong password!
 				<?php $_SESSION['wrongpassword'] = false; ?>
