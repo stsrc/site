@@ -16,10 +16,10 @@ $password_hashed=hash('sha256', $password);
 try {
 	if (!$email_check) {
 		echo "Wrong email!";
-		header('Refresh: 3; URL=http://127.0.0.1/index.php');
+		header('Refresh: 3; location: index.php');
 	} else if (!$password_check) {
 		echo "Wrong password!";
-		header('Refresh: 3; URL=http://127.0.0.1/index.php');
+		header('Refresh: 3; location: index.php');
 		$_SESSION['wrongpassword'] = true;
 	} else {
 		include 'secretpasswords.php';

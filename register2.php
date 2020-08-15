@@ -13,16 +13,16 @@
 
 	if (strcmp($captcha, $_SESSION['captcha']['code'])) {
 		echo "Wrong captcha! Please try again";
-		header('Refresh: 3; URL=http://127.0.0.1/register.php'); //TODO redirections
+		header('Refresh: 3; URL=register.php'); //TODO redirections
 	} else if (!$email_check) {
 		echo "Please enter correct email address<br>";
 		echo "Redirecting in 3 seconds...";
-		header('Refresh: 3; URL=http://127.0.0.1/register.php');
+		header('Refresh: 3; URL=register.php');
 	} else if (!$password_check) {
 		echo "Please enter proper password. Password must have at least 6 and up to 20 signs.<br>";
 		echo "Allowed characters are: A-Z, a-z, 0-9, !, @, #, $, %, ^, &, *, (, ), _<br>";
 		echo "Redirecting in 20 seconds";
-		header('Refresh: 20; URL=http://127.0.0.1/register.php');
+		header('Refresh: 20; URL=register.php');
 	} else {
 		try {
 			include 'secretpasswords.php';
@@ -35,13 +35,13 @@
 			$result = strcmp($row[1], $email);
 			if (strcmp($row[1], $email) == 0) {
 				echo "E-mail already used, get another. Going back to register page in 3 seconds...";
-				header('Refresh: 3; URL=http://127.0.0.1/register.php');
+				header('Refresh: 3; URL=register.php');
 				$pdo=null;
 			} else {
 				$query=$pdo->prepare('INSERT INTO users (email, password) VALUES (?, ?)');
 				$query->execute([$email, $password_hashed]);
 				echo "Registered successfully, going back in 1 second...";
-				header('Refresh: 1; URL=http://127.0.0.1/index.php');
+				header('Refresh: 1; URL=index.php');
 			}
 		} catch (PDOException $e) {
 			echo "WRONG! " . $e->getMessage();
