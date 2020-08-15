@@ -22,7 +22,8 @@ try {
 		header('Refresh: 3; URL=http://127.0.0.1/index.php');
 		$_SESSION['wrongpassword'] = true;
 	} else {
-		$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "user", "password");
+		include 'secretpasswords.php';
+		$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", $user, $password);
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$query = $pdo->prepare('SELECT * FROM users WHERE (email=? AND password=?)');
 		$query->execute([$email, $password_hashed]);

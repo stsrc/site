@@ -6,8 +6,9 @@
 <body>
 <?php
 	$text=$_POST["blognote"];
-	try {
-		$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "user", "password");
+try {
+		include 'secretpasswords.php';
+		$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", $user, $password);
 		$query=$pdo->prepare('INSERT INTO blog(creation, author, note) VALUES (?, ?, ?)');
 		date_default_timezone_set("Europe/Warsaw");
 		$creation=date('Y-m-d H:i:s');

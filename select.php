@@ -9,7 +9,8 @@ $newer = $_POST["newer"];
 $older = $_POST["older"];
 
 try {
-	$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "user", "password");
+	include 'secretpasswords.php';
+	$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", $user, $password);
 	$query=$pdo->prepare('SELECT COUNT(*) FROM blog');
 	$query->execute();
 	$query->setFetchMode(PDO::FETCH_NUM); //TODO: what does it do?

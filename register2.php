@@ -25,7 +25,8 @@
 		header('Refresh: 20; URL=http://127.0.0.1/register.php');
 	} else {
 		try {
-			$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", "user", "password");
+			include 'secretpasswords.php';
+			$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", $user, $password);
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$query=$pdo->prepare('SELECT * FROM users WHERE email=?');
 			$query->execute([$email]);
