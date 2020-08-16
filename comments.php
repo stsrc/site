@@ -26,7 +26,7 @@ try {
 				$blog_id = $_POST['hidden'];
 				if ($text_ok && $captcha_ok) {
 					include 'secretpasswords.php';
-					$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", $user, $password);	//TODO remove this boilerplate code
+					$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);	//TODO remove this boilerplate code
 					$query = $pdo->prepare('INSERT INTO comments(blog_id, creation, author, note) VALUES (?, ?, ?, ?)');
 					date_default_timezone_set("Europe/Warsaw");
 					$creation=date('Y-m-d H:i:s');
@@ -37,7 +37,7 @@ try {
 
 			$blog_id = $_POST['hidden'];
 			include 'secretpasswords.php';
-			$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", $user, $password);	//TODO remove this boilerplate code
+			$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);//TODO remove this boilerplate code
 			$query = $pdo->prepare('SELECT * FROM blog WHERE blog_id=?');
 			$query->execute([$blog_id]);
 			$query->setFetchMode(PDO::FETCH_NUM);

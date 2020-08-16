@@ -26,7 +26,7 @@
 	} else {
 		try {
 			include 'secretpasswords.php';
-			$pdo = new PDO("mysql:host=localhost;dbname=mydatabase", $user, $password);
+			$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$query=$pdo->prepare('SELECT * FROM users WHERE email=?');
 			$query->execute([$email]);
