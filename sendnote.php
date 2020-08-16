@@ -1,12 +1,7 @@
 <?php
-    session_start();
-?>
-
-<html>
-<body>
-<?php
+	session_start();
 	$text=$_POST["blognote"];
-try {
+	try {
 		include 'secretpasswords.php';
 		$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
 		$query=$pdo->prepare('INSERT INTO blog(creation, author, note) VALUES (?, ?, ?)');
@@ -19,5 +14,8 @@ try {
 			echo "WRONG!" . $e->getMessage();
 	}
 ?>
+
+<html>
+<body>
 </body>
 </html>

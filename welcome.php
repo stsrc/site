@@ -1,10 +1,5 @@
 <?php
-    session_start();
-?>
-
-<html>
-<body>
-<?php
+session_start();
 $email=($_POST["email"]);
 $password=($_POST["password"]);
 
@@ -52,5 +47,8 @@ try {
 	echo "Something bad happened";
 }
 //?>
+
+<html>
+<body>
 </body>
 </html>

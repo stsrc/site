@@ -1,9 +1,5 @@
 <?php
 	session_start();
-?>
-<html>
-<body>
-<?php
 	$email=$_POST["email"];
 	$password=$_POST["password"];
 	$email_check = preg_match('~^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$~i', $email);
@@ -12,16 +8,16 @@
 	$captcha=$_POST["captcha"];
 
 	if (strcmp($captcha, $_SESSION['captcha']['code'])) {
-		echo "Wrong captcha! Please try again";
+		$msg="Wrong captcha! Please try again";
 		header('Refresh: 3; URL=register.php'); //TODO redirections
 	} else if (!$email_check) {
-		echo "Please enter correct email address<br>";
-		echo "Redirecting in 3 seconds...";
+		$msg="Please enter correct email address<br>";
+		$msg= $msg . "Redirecting in 3 seconds...";
 		header('Refresh: 3; URL=register.php');
 	} else if (!$password_check) {
-		echo "Please enter proper password. Password must have at least 6 and up to 20 signs.<br>";
-		echo "Allowed characters are: A-Z, a-z, 0-9, !, @, #, $, %, ^, &, *, (, ), _<br>";
-		echo "Redirecting in 20 seconds";
+		$msg = "Please enter proper password. Password must have at least 6 and up to 20 signs.<br>";
+		$msg = $msg . "Allowed characters are: A-Z, a-z, 0-9, !, @, #, $, %, ^, &, *, (, ), _<br>";
+		$msg = $msg . "Redirecting in 20 seconds";
 		header('Refresh: 20; URL=register.php');
 	} else {
 		try {
@@ -34,19 +30,22 @@
 			$row = $query->fetch();
 			$result = strcmp($row[1], $email);
 			if (strcmp($row[1], $email) == 0) {
-				echo "E-mail already used, get another. Going back to register page in 3 seconds...";
+				$msg = "E-mail already used, get another. Going back to register page in 3 seconds...";
 				header('Refresh: 3; URL=register.php');
 				$pdo=null;
 			} else {
 				$query=$pdo->prepare('INSERT INTO users (email, password) VALUES (?, ?)');
 				$query->execute([$email, $password_hashed]);
-				echo "Registered successfully, going back in 1 second...";
+				$msg = "Registered successfully, going back in 1 second...";
 				header('Refresh: 1; URL=index.php');
 			}
 		} catch (PDOException $e) {
-			echo "WRONG! " . $e->getMessage();
+			$msg = "WRONG! " . $e->getMessage();
 		}
 	}
 ?>
+<html>
+<body>
+ <?php echo $msg ?>
 </body>
 </html>

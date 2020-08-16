@@ -1,10 +1,6 @@
 <?php
-	session_start();
-?>
-
-<html>
-<body>
-<?php
+header('location: index.php');
+session_start();
 $newer = $_POST["newer"];
 $older = $_POST["older"];
 
@@ -35,7 +31,8 @@ if (isset($newer)) {
 		$_SESSION['minimal_blog'] = 1;
 	}
 }
-	header('location: index.php');
 ?>
+<html>
+<body>
 </body>
 </html>
