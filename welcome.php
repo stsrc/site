@@ -10,11 +10,11 @@ $password_check = preg_match('~^[A-Za-z0-9!@#$%^&*()_]{6,20}$~i', $password);
 $password_hashed=hash('sha256', $password);
 try {
 	if (!$email_check) {
-		msg = "Wrong email!";
-		header('Refresh: 3; location: index.php');
+		$msg = "Wrong email!";
+		header('Refresh: 3; URL=index.php');
 	} else if (!$password_check) {
-		msg = "Wrong password!";
-		header('Refresh: 3; location: index.php');
+		$msg = "Wrong password!";
+		header('Refresh: 3; URL=index.php');
 		$_SESSION['wrongpassword'] = true;
 	} else {
 		include 'secretpasswords.php';
