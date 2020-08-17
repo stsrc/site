@@ -19,7 +19,6 @@ input { border: none;
 	font-family: Arial, Helvatica, sans-serif;
 	margin-right: 1%;
 	overflow: hidden;
-	min-width: 6em;
 }
 #two {
 	width: 90%;
@@ -29,7 +28,7 @@ input { border: none;
 	overflow: hidden;
 }
 
-@media (max-width:1500px){
+@media (max-width:800px){
         #one {
 	    width: 10%;
 	    max-width: 10em;
