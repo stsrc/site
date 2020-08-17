@@ -9,6 +9,9 @@
 		<link rel="stylesheet" href="index.css" type="text/css">
 	</head>
 	<body>
+	<div id="header">
+		<h1>Yet another fancy site</h1>
+	</div>
 	<div id="container">
 		<div id="one">
 			<?php if(empty($_SESSION['email'])) { ?>

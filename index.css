@@ -1,5 +1,8 @@
-header { text-align: center;
-	float: center; }
+#header { text-align: center;
+	float: center;
+	font-family: Arial, Helvatica, sans-serif;
+	}
+
 input { border: none;
 	height: 2em;
 	width: 100%;
