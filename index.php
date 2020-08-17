@@ -30,7 +30,7 @@
 			</form>
 		<?php } ?>
 			<a href=https://github.com/stsrc>github</a><br>
-			<a href=https://pl.linkedin.com/in/konrad-gotfryd-4aa205136>linkedin</a><br><br>
+			<a href=https://pl.linkedin.com/in/konrad-gotfryd-4aa205136>linkedin</a>
 		<?php if (!empty($_SESSION['admin']) && $_SESSION['admin'] == true) { ?>
 			<form action="newblognote.php" method="post">
 				<input type="submit" value="new blog note">
@@ -65,6 +65,7 @@ try {
 
 			for ($i = $_SESSION['minimal_blog']; $i < $_SESSION['maximal_blog'] + 1; $i++) {
 				$row = $query->fetch();
+				echo "<hr>";
 				echo "$row[1]";
 				echo "<br>";
 				echo "$row[2]";
@@ -76,8 +77,8 @@ try {
 				echo "<input type=\"submit\" name=\"submit\" value=\"Comment\" style=\" width:10%;\">"; //TODO; hovering?
 				echo "<input type=\"hidden\" name=\"hidden\" value=\"$row[0]\">";
 				echo "</form>";
-				echo "<hr>";
 			}
+			echo "<hr>";
 		} catch (PDOException $e) {
 			echo "WRONG!" . $e->getMessage();
 		}
