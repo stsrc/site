@@ -10,10 +10,10 @@ $password_check = preg_match('~^[A-Za-z0-9!@#$%^&*()_]{6,20}$~i', $password);
 $password_hashed=hash('sha256', $password);
 try {
 	if (!$email_check) {
-		echo "Wrong email!";
+		msg = "Wrong email!";
 		header('Refresh: 3; location: index.php');
 	} else if (!$password_check) {
-		echo "Wrong password!";
+		msg = "Wrong password!";
 		header('Refresh: 3; location: index.php');
 		$_SESSION['wrongpassword'] = true;
 	} else {
@@ -50,5 +50,6 @@ try {
 
 <html>
 <body>
+<?php echo $msg ?>
 </body>
 </html>
