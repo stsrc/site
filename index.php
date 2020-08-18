@@ -14,6 +14,7 @@
 	</div>
 	<div id="container">
 		<div id="one">
+			<hr>
 			<?php if(empty($_SESSION['email'])) { ?>
 			<form action="welcome.php" method="post">
 				Email:<br><input type="text" name="email" style="background-color: LightGrey;"><br>
@@ -39,6 +40,7 @@
 				<input type="submit" value="new blog note">
 			</form>
 		<?php } ?>
+		<hr>
 		 </div>
 		 <div id="two">
 
