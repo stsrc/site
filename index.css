@@ -3,7 +3,8 @@
 	font-family: Arial, Helvatica, sans-serif;
 	}
 
-input { border: none;
+input {
+	border: none;
 	height: 2em;
 	width: 100%;
 	min-width: 6em;

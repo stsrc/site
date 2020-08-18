@@ -78,8 +78,11 @@ try {
 				echo "<br>";
 				echo "$row[3]";
 				echo "<br>";
+				$queryCount = $pdo->prepare('SELECT COUNT(*) FROM comments where blog_id=?');
+				$queryCount->execute([$row[0]]);
+				$countComments=$queryCount->fetch();
 				echo "<form action=\"comments.php\" method=\"post\">";
-				echo "<input type=\"submit\" name=\"submit\" value=\"Comment\" style=\" width:10%;\">"; //TODO; hovering?
+				echo "<input type=\"submit\" name=\"submit\" value=\"Comments (" . $countComments[0] . ")\" style=\" width:10em;\">"; //TODO; hovering?
 				echo "<input type=\"hidden\" name=\"hidden\" value=\"$row[0]\">";
 				echo "</form>";
 			}
