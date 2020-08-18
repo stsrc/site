@@ -39,6 +39,9 @@
 			<form action="newblognote.php" method="post">
 				<input type="submit" value="new blog note">
 			</form>
+			<form action="deleteblognote.php" method="post">
+				<input type="submit" value="delete blog note">
+			</form>
 		<?php } ?>
 		<hr>
 		 </div>
@@ -53,7 +56,7 @@ try {
 			$query->setFetchMode(PDO::FETCH_NUM); //TODO: what does it do?
 			$count = $query->fetch();
 
-			$query = $pdo->prepare('SELECT * FROM blog WHERE blog_id BETWEEN ? and ? order by blog_id desc');
+			$query = $pdo->prepare('SELECT * FROM blog order by blog_id desc');
 
 			if (!isset($_SESSION['minimal_blog']) && !isset($_SESSION['maximal_blog'])) {
 				$_SESSION['maximal_blog'] = $count[0];
@@ -68,7 +71,11 @@ try {
 			$query->execute([$_SESSION['minimal_blog'], $_SESSION['maximal_blog']]);
 			$query->setFetchMode(PDO::FETCH_NUM);
 
-			for ($i = $_SESSION['minimal_blog']; $i < $_SESSION['maximal_blog'] + 1; $i++) {
+			for ($i = $count[0]; $i > $_SESSION['maximal_blog']; $i--) {
+				$row = $query->fetch();
+			}
+
+			for ($i = $_SESSION['maximal_blog']; $i >= $_SESSION['minimal_blog']; $i--) {
 				$row = $query->fetch();
 				echo "<hr>";
 				echo "$row[1]";
