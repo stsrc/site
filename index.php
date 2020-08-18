@@ -34,7 +34,8 @@
 			</form>
 		<?php } ?>
 			<a href=https://github.com/stsrc>github</a><br>
-			<a href=https://pl.linkedin.com/in/konrad-gotfryd-4aa205136>linkedin</a>
+			<a href=https://pl.linkedin.com/in/konrad-gotfryd-4aa205136>linkedin</a><br>
+			<a href="mailto:gotfrydkonrad@gmail.com">mail</a>
 		<?php if (!empty($_SESSION['admin']) && $_SESSION['admin'] == true) { ?>
 			<form action="newblognote.php" method="post">
 				<input type="submit" value="new blog note">
