@@ -17,8 +17,13 @@ try {
 
 
 if (isset($newer)) {
-	$_SESSION['maximal_blog'] = $_SESSION['maximal_blog'] + 5;
-	$_SESSION['minimal_blog'] = $_SESSION['minimal_blog'] + 5;
+	if ($_SESSION['maximal_blog'] - $_SESSION['minimal_blog'] != 4) {
+		$_SESSION['maximal_blog'] += 5;
+		$_SESSION['minimal_blog'] += $count[0] % 5;
+	} else {
+		$_SESSION['maximal_blog'] = $_SESSION['maximal_blog'] + 5;
+		$_SESSION['minimal_blog'] = $_SESSION['minimal_blog'] + 5;
+	}
 	if ($_SESSION['maximal_blog'] > $count[0]) {
 		$_SESSION['maximal_blog'] = $count[0];
 		$_SESSION['minimal_blog'] = $count[0] - 4;
@@ -27,7 +32,7 @@ if (isset($newer)) {
 	$_SESSION['maximal_blog'] = $_SESSION['maximal_blog'] - 5;
 	$_SESSION['minimal_blog'] = $_SESSION['minimal_blog'] - 5;
 	if ($_SESSION['minimal_blog'] < 1) {
-		$_SESSION['maximal_blog'] = 5;
+		$_SESSION['maximal_blog'] = $count[0] % 5;
 		$_SESSION['minimal_blog'] = 1;
 	}
 }

@@ -75,7 +75,9 @@ try {
 			for ($i = $count[0]; $i > $_SESSION['maximal_blog']; $i--) {
 				$row = $query->fetch();
 			}
-
+			echo "count[0] = " . $count[0] . "<br>";
+			echo "minimal_blog = " . $_SESSION['minimal_blog'] . "<br>";
+			echo "maximal_blog = " . $_SESSION['maximal_blog'] . "<br>";
 			for ($i = $_SESSION['maximal_blog']; $i >= $_SESSION['minimal_blog']; $i--) {
 				$row = $query->fetch();
 				echo "<hr>";
