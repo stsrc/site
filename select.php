@@ -1,6 +1,9 @@
 <?php
 header('location: index.php');
 session_start();
+include("placeforboilerplatecode.php");
+check_ssl();
+
 $newer = $_POST["newer"];
 $older = $_POST["older"];
 

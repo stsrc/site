@@ -1,4 +1,6 @@
 <?php
+        include("placeforboilerplatecode.php");
+        check_ssl();
 	session_start();
 	include("simple-php-captcha.php");
 	$_SESSION['captcha'] = simple_php_captcha();

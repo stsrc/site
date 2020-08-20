@@ -1,5 +1,8 @@
 <?php
 	session_start();
+	include("placeforboilerplatecode.php");
+        check_ssl();
+
 	$text=$_POST["blognote"];
 	try {
 		include 'secretpasswords.php';

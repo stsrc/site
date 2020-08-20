@@ -1,5 +1,7 @@
 <?php
+        include("placeforboilerplatecode.php");
 	session_start();
+        check_ssl();
 	$email=$_POST["email"];
 	$password=$_POST["password"];
 	$email_check = preg_match('~^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$~i', $email);

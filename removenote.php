@@ -1,5 +1,7 @@
 <?php
 	session_start();
+        include("placeforboilerplatecode.php");
+        check_ssl();
 ?>
 
 <html>

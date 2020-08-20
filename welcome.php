@@ -1,5 +1,8 @@
 <?php
 session_start();
+include("placeforboilerplatecode.php");
+check_ssl();
+
 $email=($_POST["email"]);
 $password=($_POST["password"]);
 
