@@ -31,9 +31,7 @@ input {
 
 @media (max-width:800px){
         #one {
-	    width: 10%;
-	    max-width: 10em;
-	    min-width: 10em;
+	    width: 100%;
 	    float: center;
 	    font-family: Arial, Helvatica, sans-serif;
         }
