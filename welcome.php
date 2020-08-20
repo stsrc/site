@@ -3,17 +3,17 @@ session_start();
 include("placeforboilerplatecode.php");
 check_ssl();
 
-$email=($_POST["email"]);
+$username=($_POST["username"]);
 $password=($_POST["password"]);
 
-$email_check = preg_match('~^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$~i', $email);
+$username_check = preg_match('~^[A-Za-z0-9!@#$%^&*()_]{1,20}$~i', $username);
 $password_check = preg_match('~^[A-Za-z0-9!@#$%^&*()_]{6,20}$~i', $password);
 
 
 $password_hashed=hash('sha256', $password);
 try {
-	if (!$email_check) {
-		$msg = "Wrong email!";
+	if (!$username_check) {
+		$msg = "Wrong username!";
 		header('Refresh: 3; URL=index.php');
 	} else if (!$password_check) {
 		$msg = "Wrong password!";
@@ -23,16 +23,16 @@ try {
 		include 'secretpasswords.php';
 		$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$query = $pdo->prepare('SELECT * FROM users WHERE (email=? AND password=?)');
-		$query->execute([$email, $password_hashed]);
+		$query = $pdo->prepare('SELECT * FROM users WHERE (username=? AND password=?)');
+		$query->execute([$username, $password_hashed]);
 		$query->setFetchMode(PDO::FETCH_NUM);
 		$row = $query->fetch();
 		$pdo = null;
-		$result = strcmp($row[1], $email);
-		$resultPassword = strcmp($row[2], $password_hashed);
+		$result = strcmp($row[1], $username);
+		$resultPassword = strcmp($row[3], $password_hashed);
 
 		if ($result == 0 && $resultPassword == 0) {
-			$_SESSION['email'] = $email;
+			$_SESSION['username'] = $username;
 			$result = ($row[0] == 1);
 			if ($result) {
 				$_SESSION['admin'] = true;

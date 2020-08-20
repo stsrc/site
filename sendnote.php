@@ -10,7 +10,7 @@
 		$query=$pdo->prepare('INSERT INTO blog(creation, author, note) VALUES (?, ?, ?)');
 		date_default_timezone_set("Europe/Warsaw");
 		$creation=date('Y-m-d H:i:s');
-		$author=$_SESSION['email'];
+		$author=$_SESSION['username'];
 		$query->execute([$creation, $author, $text]);
 		header('location: index.php');
 	} catch (PDOException $e) {

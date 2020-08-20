@@ -17,9 +17,9 @@ check_ssl();
 	<div id="container">
 		<div id="one">
 			<hr>
-			<?php if(empty($_SESSION['email'])) { ?>
+			<?php if(empty($_SESSION['username'])) { ?>
 			<form action="welcome.php" method="post">
-				Email:<br><input type="text" name="email" style="background-color: LightGrey;"><br>
+				Username:<br><input type="text" name="username" style="background-color: LightGrey;"><br>
 				Password:<br><input type="password" name="password" style="background-color: LightGrey;"><br>
 				<?php if(!empty($_SESSION['wrongpassword']) && $_SESSION['wrongpassword'] == true) { ?>
 				Wrong password!

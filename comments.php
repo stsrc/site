@@ -30,7 +30,7 @@ try {
 					$query = $pdo->prepare('INSERT INTO comments(blog_id, creation, author, note) VALUES (?, ?, ?, ?)');
 					date_default_timezone_set("Europe/Warsaw");
 					$creation=date('Y-m-d H:i:s');
-					$author=$_SESSION['email'];
+					$author=$_SESSION['username'];
 					$query->execute([$blog_id, $creation, $author, $text]);
 				}
 			}
@@ -66,7 +66,7 @@ try {
 				echo "<br>";
 			}
 			echo "<hr>";
-			if (isset($_SESSION["email"])) {
+			if (isset($_SESSION["username"])) {
 				echo "<form action=\"comments.php\" method=\"post\">";
 				echo "<textarea name=\"comment\" rows=20 cols=100 style=\"resize:none\">";
 				echo "</textarea><br>";
