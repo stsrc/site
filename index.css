@@ -6,8 +6,8 @@
 input {
 	border: none;
 	height: 2em;
-	width: 100%;
 	min-width: 6em;
+	width: 100%;
 }
 #container {
 	width: 100%;
@@ -30,10 +30,19 @@ input {
 }
 
 @media (max-width:800px){
+	input {
+	    border: none;
+	    height: 2em;
+	    width: 50%;
+	    min-width: 6em;
+	    margin: 0px auto;
+	    display: block;
+	}
         #one {
 	    width: 100%;
 	    float: center;
 	    font-family: Arial, Helvatica, sans-serif;
+	    text-align: center;
         }
 
         #two {
