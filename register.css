@@ -21,12 +21,7 @@ input {
 	font-family: Arial, Helvatica, sans-serif;
 	margin-right: 1%;
 	overflow: hidden;
-}
-#two {
-	width: 90%;
-	float:left;
-	font-family: Arial, Helvatica, sans-serif;
-	overflow: hidden;
+	min-width: 10em;
 }
 
 @media (max-width:800px){
@@ -37,19 +32,13 @@ input {
 	    min-width: 6em;
 	    margin: 0px auto;
 	    display: block;
-	    background-color: LightGrey;
+            background-color: LightGrey;
 	}
         #one {
 	    width: 100%;
 	    float: center;
 	    font-family: Arial, Helvatica, sans-serif;
 	    text-align: center;
-        }
-
-        #two {
-            width: 100%;
-	    float: center;
-	    font-family: Arial, Helvatica, sans-serif;
         }
 }
 

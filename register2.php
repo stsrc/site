@@ -5,6 +5,7 @@
 	$username=$_POST["username"];
 	$email=$_POST["email"];
 	$password=$_POST["password"];
+	$repassword=$_POST["repassword"];
 
 	$username_check=preg_match('~^[A-Za-z0-9!@#$%^&*()_]{1,20}$~i', $username);
 	$email_check = preg_match('~^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$~i', $email);
@@ -13,7 +14,11 @@
 	$password_hashed=hash('sha256', $_POST["password"]);
 	$captcha=$_POST["captcha"];
 
-	if (strcmp($captcha, $_SESSION['captcha']['code'])) {
+	if (strcmp($password, $repassword)) {
+		$msg="Passwords differ, type again.<br>";
+		$msg= $msg . "Redirecting in 5 seconds";
+		header('Refresh: 5; URL=register.php');
+	} else if (strcmp($captcha, $_SESSION['captcha']['code'])) {
 		$msg="Wrong captcha! Please try again";
 		header('Refresh: 3; URL=register.php'); //TODO redirections
 	} else if (!$email_check) {
