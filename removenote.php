@@ -5,6 +5,8 @@
 	if (empty($_SESSION['admin']) || $_SESSION['admin'] != true) {
 		header('location: index.php');
 		exit();
+	} else {
+		header("location: index.php");
 	}
 ?>
 
@@ -19,7 +21,6 @@
 
 	$query=$pdo->prepare("DELETE FROM comments where blog_id=?");
 	$query->execute([$toremove]);
-	header("location: index.php");
 ?>
 </body>
 </html>
