@@ -33,9 +33,6 @@ try {
 					$author=$_SESSION['username'];
 					$query->execute([$blog_id, $creation, $author, $text]);
 				}
-			} else {
-				header('location: index.php');
-				exit();
 			}
 
 			$blog_id = $_POST['hidden'];
