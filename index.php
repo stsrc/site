@@ -47,8 +47,26 @@ check_ssl();
 			</form>
 		<?php } ?>
 		<hr>
-		 </div>
-		 <div id="two">
+		<div id ="animate"></div>
+		<script>
+
+			function myMove() {
+				var elem = document.getElementById("animate");
+				var pos = 0;
+				var id = setInterval(frame, 5);
+				function frame() {
+					pos -= 0.025;
+					posx= 15 * Math.sin(pos);
+					posy= 15 * Math.cos(pos);
+					elem.style.top = 30 + posy + 'px';
+					elem.style.left = 30 + posx + 'px';
+				}
+			}
+		myMove();
+		</script>
+
+		</div>
+		<div id="two">
 
 <?php
 try {

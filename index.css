@@ -29,6 +29,14 @@ input {
 	overflow: hidden;
 }
 
+#animate {
+	width: 1em;
+	height: 1em;
+	background-color: blue;
+	border-radius: 100%;
+	position: absolute;
+}
+
 @media (max-width:800px){
 	input {
 	    border: none;
@@ -51,6 +59,11 @@ input {
 	    float: center;
 	    font-family: Arial, Helvatica, sans-serif;
         }
+
+	#animate {
+		width: 0px;
+		height: 0px;
+	}
 }
 
 input[type=submit] {
