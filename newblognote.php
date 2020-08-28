@@ -2,6 +2,10 @@
 	include("placeforboilerplatecode.php");
 	session_start();
 	check_ssl();
+	if (empty($_SESSION['admin']) || $_SESSION['admin'] != true) {
+		header('location: index.php');
+		exit();
+	}
 ?>
 
 <html>

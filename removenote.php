@@ -1,7 +1,11 @@
 <?php
 	session_start();
         include("placeforboilerplatecode.php");
-        check_ssl();
+	check_ssl();
+	if (empty($_SESSION['admin']) || $_SESSION['admin'] != true) {
+		header('location: index.php');
+		exit();
+	}
 ?>
 
 <html>
