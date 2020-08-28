@@ -78,8 +78,8 @@ try {
 				}
 				echo "Captcha:<br>";
 				echo '<img src="' . $_SESSION['captcha']['image_src'] . '" alt="CAPTCHA code"><br>';
-				echo "<input type=\"text\" name=\"captcha\" style=\"background-color: LightGrey; width: 160px;\"><br>";
-				echo "<input type=\"submit\" value=\"send note\">";
+				echo "<input type=\"text\" name=\"captcha\" placeholder=\"enter captcha here\" style=\"background-color: LightGrey; width: 160px;\"><br><br>";
+				echo "<input type=\"submit\" value=\"send note\" style=\"width: 160px\">";
 				echo "<input type=\"hidden\" name=\"hidden\" value=\"$blog_id\">";
 				echo "</form>";
 			} else {
