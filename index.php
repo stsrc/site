@@ -47,19 +47,30 @@ check_ssl();
 			</form>
 		<?php } ?>
 		<hr>
-		<div id ="animate"></div>
+		<div id ="animate1"></div>
+		<div id ="animate2"></div>
+		<div id ="animate3"></div>
 		<script>
-
 			function myMove() {
-				var elem = document.getElementById("animate");
+				var elem1 = document.getElementById("animate1");
+				var elem2 = document.getElementById("animate2");
+				var elem3 = document.getElementById("animate3");
 				var pos = 0;
 				var id = setInterval(frame, 5);
 				function frame() {
 					pos -= 0.025;
-					posx= 15 * Math.sin(pos);
-					posy= 15 * Math.cos(pos);
-					elem.style.top = 30 + posy + 'px';
-					elem.style.left = 30 + posx + 'px';
+					posx1= 15 * Math.sin(pos);
+					posy1= 15 * Math.cos(pos);
+					posx2= 15 * Math.sin(-pos);
+					posy2= 15 * Math.cos(-pos);
+					posx3= 15 * Math.sin(-pos + 1);
+					posy3= 15 * Math.cos(-pos - 1);
+					elem1.style.top = 400 + posy1 + 'px';
+					elem1.style.left = 50 + posx1 + 'px';
+					elem2.style.top = 400 + posy2 + 'px';
+					elem2.style.left = 50 + posx2 + 'px';
+					elem3.style.top = 400 + posy3 + 'px';
+					elem3.style.left = 50 + posx3 + 'px';
 				}
 			}
 		myMove();

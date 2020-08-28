@@ -29,10 +29,26 @@ input {
 	overflow: hidden;
 }
 
-#animate {
-	width: 1em;
-	height: 1em;
+#animate1 {
+	width: 10px;
+	height: 10px;
 	background-color: blue;
+	border-radius: 100%;
+	position: absolute;
+}
+
+#animate2 {
+	width: 10px;
+	height: 10px;
+	background-color: green;
+	border-radius: 100%;
+	position: absolute;
+}
+
+#animate3 {
+	width: 10px;
+	height: 10px;
+	background-color: red;
 	border-radius: 100%;
 	position: absolute;
 }
@@ -60,7 +76,15 @@ input {
 	    font-family: Arial, Helvatica, sans-serif;
         }
 
-	#animate {
+	#animate1 {
+		width: 0px;
+		height: 0px;
+	}
+	#animate2 {
+		width: 0px;
+		height: 0px;
+	}
+	#animate3 {
 		width: 0px;
 		height: 0px;
 	}
