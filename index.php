@@ -114,7 +114,6 @@ try {
 				echo "<br>";
 				echo "$row[2]";
 				echo "<br>";
-				echo "<br>";
 				echo "$row[3]";
 				echo "<br>";
 				$queryCount = $pdo->prepare('SELECT COUNT(*) FROM comments where blog_id=?');
