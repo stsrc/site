@@ -65,12 +65,12 @@ check_ssl();
 					posy2= 15 * Math.cos(-pos);
 					posx3= 15 * Math.sin(-pos + 1);
 					posy3= 15 * Math.cos(-pos - 1);
-					elem1.style.top = 400 + posy1 + 'px';
-					elem1.style.left = 50 + posx1 + 'px';
-					elem2.style.top = 400 + posy2 + 'px';
-					elem2.style.left = 50 + posx2 + 'px';
-					elem3.style.top = 400 + posy3 + 'px';
-					elem3.style.left = 50 + posx3 + 'px';
+					elem1.style.top = 20 + posy1 + 'px';
+					elem1.style.left = 15 + posx1 + 'px';
+					elem2.style.top = 10 + posy2 + 'px';
+					elem2.style.left = 15 + posx2 + 'px';
+					elem3.style.top =  posy3 + 'px';
+					elem3.style.left = 15 + posx3 + 'px';
 				}
 			}
 		myMove();
