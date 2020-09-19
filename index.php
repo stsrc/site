@@ -24,13 +24,17 @@ check_ssl();
 				<?php if(!empty($_SESSION['wrongpassword']) && $_SESSION['wrongpassword'] == true) { ?>
 				Wrong password!
 				<?php $_SESSION['wrongpassword'] = false; ?>
-				<?php } ?> <br>
+				<?php } ?>
+				<a href="forgotpassword.php" style="color: black; text-decoration: none">Forgot password</a>
 				<input type="submit" value="Submit">
 			</form>
 			<form action="register.php" method="post">
 				<input type="submit" value="Register">
 			</form>
 		<?php } else { ?>
+			<form action = "changepassword.php" method = "post">
+				<input type="submit" value="change password">
+			</form>
 			<form action="logout.php" method="post">
 				<input type="submit" value="logout">
 			</form>
