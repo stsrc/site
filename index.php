@@ -49,6 +49,9 @@ check_ssl();
 			<form action="deleteblognote.php" method="post">
 				<input type="submit" value="delete blog note">
 			</form>
+			<form action="editblognote.php" method="post">
+				<input type="submit" value="edit blog note">
+			</form>
 		<?php } ?>
 		<hr>
 		<div id ="animate1"></div>
