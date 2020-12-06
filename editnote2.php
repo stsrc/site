@@ -2,9 +2,9 @@
 	session_start();
 	include("placeforboilerplatecode.php");
         check_ssl();
-
+	header('location: index.php');
 	if (empty($_SESSION['admin']) || $_SESSION['admin'] != true) {
-		return;
+		exit();
 	}
 
 	$text=$_POST["blognote"];
@@ -15,7 +15,6 @@
 		$query=$pdo->prepare('UPDATE blog set `note`=? where blog_id=?');
 		$query->execute([$text, $id]);
 		echo "id = $id, text = $text";
-		header('location: index.php');
 	} catch (PDOException $e) {
 			echo "WRONG!" . $e->getMessage();
 	}
