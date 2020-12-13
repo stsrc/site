@@ -82,7 +82,25 @@ check_ssl();
 			}
 		myMove();
 		</script>
-
+		<br>
+		Keywords:<br>
+		<?php
+			include 'secretpasswords.php';
+			$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
+			$query=$pdo->prepare('SELECT DISTINCT keyword FROM blog');
+			$query->execute();
+			$query->setFetchMode(PDO::FETCH_NUM); //TODO: what does it do?
+			$keywords = $query->fetchAll();
+			echo "<form action=\"select_keyword.php\" method=\"post\">";
+			echo "<input type=\"submit\" name=\"keyword\" value=\"all\">";
+			foreach ($keywords as $keyword) {
+				if (strlen($keyword[0])) {
+					echo "<input type=\"submit\" name=\"keyword\" value=\"$keyword[0]\">";
+					echo "<br>";
+				}
+			}
+			echo "</form>";
+?>
 		</div>
 		<div id="two">
 
@@ -90,12 +108,25 @@ check_ssl();
 try {
 			include 'secretpasswords.php';
 			$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
-			$query=$pdo->prepare('SELECT COUNT(*) FROM blog');
-			$query->execute();
+			if (strlen($_SESSION["keyword"])) {
+				$query=$pdo->prepare('SELECT COUNT(*) FROM blog where keyword=?');
+				$query->execute([$_SESSION["keyword"]]);
+			} else {
+				$query=$pdo->prepare('SELECT COUNT(*) FROM blog');
+				$query->execute();
+			}
+
+
 			$query->setFetchMode(PDO::FETCH_NUM); //TODO: what does it do?
 			$count = $query->fetch();
 
-			$query = $pdo->prepare('SELECT * FROM blog order by blog_id desc');
+			if (strlen($_SESSION["keyword"])) {
+				$query = $pdo->prepare('SELECT * FROM blog where keyword=? order by blog_id desc');
+				$query->execute([$_SESSION["keyword"]]);
+			} else {
+				$query = $pdo->prepare('SELECT * FROM blog order by blog_id desc');
+				$query->execute();
+			}
 
 			if (!isset($_SESSION['minimal_blog']) && !isset($_SESSION['maximal_blog'])) {
 				$_SESSION['maximal_blog'] = $count[0];
@@ -107,7 +138,7 @@ try {
 				$_SESSION['maximal_blog'] = $count[0];
 			}
 
-			$query->execute([$_SESSION['minimal_blog'], $_SESSION['maximal_blog']]);
+
 			$query->setFetchMode(PDO::FETCH_NUM);
 
 			for ($i = $count[0]; $i > $_SESSION['maximal_blog']; $i--) {
