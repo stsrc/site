@@ -9,6 +9,7 @@ echo $_SESSION["keyword"];
 if (!strcmp($_SESSION["keyword"], "all")) {
 	$_SESSION["keyword"] = "";
 }
+$_SESSION["reset_pages"] = true;
 ?>
 <html>
 <body>

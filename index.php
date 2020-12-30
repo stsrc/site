@@ -128,9 +128,10 @@ try {
 				$query->execute();
 			}
 
-			if (!isset($_SESSION['minimal_blog']) && !isset($_SESSION['maximal_blog'])) {
+			if ($_SESSION["reset_pages"] || !isset($_SESSION['minimal_blog']) && !isset($_SESSION['maximal_blog'])) {
 				$_SESSION['maximal_blog'] = $count[0];
 				$_SESSION['minimal_blog'] = $count[0] - 4;
+				$_SESSION['reset_pages'] = false;
 			}
 
 			if ($count[0] < 5) {
