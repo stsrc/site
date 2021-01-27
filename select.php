@@ -10,8 +10,13 @@ $older = $_POST["older"];
 try {
 	include 'secretpasswords.php';
 	$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
-	$query=$pdo->prepare('SELECT COUNT(*) FROM blog');
-	$query->execute();
+	if (!isset($_SESSION["keyword"]) || strlen($_SESSION["keyword"]) == 0) {
+		$query=$pdo->prepare('SELECT COUNT(*) FROM blog');
+		$query->execute();
+	} else {
+		$query=$pdo->prepare('SELECT COUNT(*) FROM blog where keyword=?');
+		$query->execute([$_SESSION["keyword"]]);
+	}
 	$query->setFetchMode(PDO::FETCH_NUM); //TODO: what does it do?
 	$count = $query->fetch();
 } catch (PDOException $e) {
