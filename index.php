@@ -96,7 +96,6 @@ check_ssl();
 			foreach ($keywords as $keyword) {
 				if (strlen($keyword[0])) {
 					echo "<input type=\"submit\" name=\"keyword\" value=\"$keyword[0]\">";
-					echo "<br>";
 				}
 			}
 			echo "</form>";
