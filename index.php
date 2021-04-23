@@ -39,9 +39,9 @@ check_ssl();
 				<input type="submit" value="logout">
 			</form>
 		<?php } ?>
-			<a href=https://github.com/stsrc>github</a><br>
-			<a href=https://pl.linkedin.com/in/konrad-gotfryd-4aa205136>linkedin</a><br>
-			<a href="mailto:gotfrydkonrad@gmail.com">mail</a>
+			<a href=https://github.com/stsrc><img src="svg/github.svg" alt="github" style="width:24px; height:24px;"></a>
+			<a href=https://pl.linkedin.com/in/konrad-gotfryd-4aa205136><img src="svg/linkedin.svg" alt="linkedin" style="width:24px; height:24px;"></a>
+			<a href="mailto:gotfrydkonrad@gmail.com"><img src="svg/mail.svg" alt="mail" style="width:24px; height:24px;"></a>
 		<?php if (!empty($_SESSION['admin']) && $_SESSION['admin'] == true) { ?>
 			<form action="newblognote.php" method="post">
 				<input type="submit" value="new blog note">
