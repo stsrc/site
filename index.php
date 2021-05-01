@@ -39,9 +39,6 @@ check_ssl();
 				<input type="submit" value="logout">
 			</form>
 		<?php } ?>
-			<a href=https://github.com/stsrc><img src="svg/github.svg" alt="github" style="width:24px; height:24px;"></a>
-			<a href=https://pl.linkedin.com/in/konrad-gotfryd-4aa205136><img src="svg/linkedin.svg" alt="linkedin" style="width:24px; height:24px;"></a>
-			<a href="mailto:gotfrydkonrad@gmail.com"><img src="svg/mail.svg" alt="mail" style="width:24px; height:24px;"></a>
 		<?php if (!empty($_SESSION['admin']) && $_SESSION['admin'] == true) { ?>
 			<form action="newblognote.php" method="post">
 				<input type="submit" value="new blog note">
@@ -54,6 +51,29 @@ check_ssl();
 			</form>
 		<?php } ?>
 		<hr>
+		Keywords:<br>
+		<?php
+			include 'secretpasswords.php';
+			$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
+			$query=$pdo->prepare('SELECT DISTINCT keyword FROM blog');
+			$query->execute();
+			$query->setFetchMode(PDO::FETCH_NUM); //TODO: what does it do?
+			$keywords = $query->fetchAll();
+			echo "<form action=\"select_keyword.php\" method=\"post\">";
+			echo "<input type=\"submit\" name=\"keyword\" value=\"all\">";
+			foreach ($keywords as $keyword) {
+				if (strlen($keyword[0])) {
+					echo "<input type=\"submit\" name=\"keyword\" value=\"$keyword[0]\">";
+				}
+			}
+			echo "</form>";
+?>
+		<hr>
+
+		<a href=https://github.com/stsrc><img src="svg/github.svg" alt="github" style="width:24px; height:24px;"></a>
+		<a href=https://pl.linkedin.com/in/konrad-gotfryd-4aa205136><img src="svg/linkedin.svg" alt="linkedin" style="width:24px; height:24px;"></a>
+		<a href="mailto:gotfrydkonrad@gmail.com"><img src="svg/mail.svg" alt="mail" style="width:24px; height:24px;"></a>
+
 		<div id ="animate1"></div>
 		<div id ="animate2"></div>
 		<div id ="animate3"></div>
@@ -83,23 +103,6 @@ check_ssl();
 		myMove();
 		</script>
 		<br>
-		Keywords:<br>
-		<?php
-			include 'secretpasswords.php';
-			$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
-			$query=$pdo->prepare('SELECT DISTINCT keyword FROM blog');
-			$query->execute();
-			$query->setFetchMode(PDO::FETCH_NUM); //TODO: what does it do?
-			$keywords = $query->fetchAll();
-			echo "<form action=\"select_keyword.php\" method=\"post\">";
-			echo "<input type=\"submit\" name=\"keyword\" value=\"all\">";
-			foreach ($keywords as $keyword) {
-				if (strlen($keyword[0])) {
-					echo "<input type=\"submit\" name=\"keyword\" value=\"$keyword[0]\">";
-				}
-			}
-			echo "</form>";
-?>
 		</div>
 		<div id="two">
 
