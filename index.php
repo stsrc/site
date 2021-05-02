@@ -103,6 +103,10 @@ check_ssl();
 		myMove();
 		</script>
 		<br>
+		<hr>
+                <form action="draw.php" method="post">
+                        <input type="submit" value="Playground">
+                </form>
 		</div>
 		<div id="two">
 
