@@ -69,15 +69,15 @@ check_ssl();
 			echo "</form>";
 ?>
 		<hr>
-
-		<a href=https://github.com/stsrc><img src="svg/github.svg" alt="github" style="width:24px; height:24px;"></a>
-		<a href=https://pl.linkedin.com/in/konrad-gotfryd-4aa205136><img src="svg/linkedin.svg" alt="linkedin" style="width:24px; height:24px;"></a>
-		<a href="mailto:gotfrydkonrad@gmail.com"><img src="svg/mail.svg" alt="mail" style="width:24px; height:24px;"></a>
-
-		<hr>
                 <form action="draw.php" method="post">
                         <input type="submit" value="Playground">
-                </form>
+		</form>
+		<hr>
+		<div id="svglinks">
+			<a href=https://github.com/stsrc><img src="svg/github.svg" alt="github" style="width:24px; height:24px;"></a>
+			<a href=https://pl.linkedin.com/in/konrad-gotfryd-4aa205136><img src="svg/linkedin.svg" alt="linkedin" style="width:24px; height:24px;"></a>
+			<a href="mailto:gotfrydkonrad@gmail.com"><img src="svg/mail.svg" alt="mail" style="width:24px; height:24px;"></a>
+		</div>
 		</div>
 		<div id="two">
 
