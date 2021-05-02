@@ -69,8 +69,9 @@ check_ssl();
 			echo "</form>";
 ?>
 		<hr>
-                <form action="draw.php" method="post">
-                        <input type="submit" value="Playground">
+		<form action="draw.php" method="post">
+			Playground: <br>
+                        <input type="submit" value="Draw lines">
 		</form>
 		<hr>
 		<div id="svglinks">
