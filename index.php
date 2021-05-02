@@ -74,35 +74,6 @@ check_ssl();
 		<a href=https://pl.linkedin.com/in/konrad-gotfryd-4aa205136><img src="svg/linkedin.svg" alt="linkedin" style="width:24px; height:24px;"></a>
 		<a href="mailto:gotfrydkonrad@gmail.com"><img src="svg/mail.svg" alt="mail" style="width:24px; height:24px;"></a>
 
-		<div id ="animate1"></div>
-		<div id ="animate2"></div>
-		<div id ="animate3"></div>
-		<script>
-			function myMove() {
-				var elem1 = document.getElementById("animate1");
-				var elem2 = document.getElementById("animate2");
-				var elem3 = document.getElementById("animate3");
-				var pos = 0;
-				var id = setInterval(frame, 5);
-				function frame() {
-					pos -= 0.025;
-					posx1= 15 * Math.sin(pos);
-					posy1= 15 * Math.cos(pos);
-					posx2= 15 * Math.sin(-pos);
-					posy2= 15 * Math.cos(-pos);
-					posx3= 15 * Math.sin(-pos + 1);
-					posy3= 15 * Math.cos(-pos - 1);
-					elem1.style.top = 20 + posy1 + 'px';
-					elem1.style.left = 15 + posx1 + 'px';
-					elem2.style.top = 10 + posy2 + 'px';
-					elem2.style.left = 15 + posx2 + 'px';
-					elem3.style.top =  posy3 + 'px';
-					elem3.style.left = 15 + posx3 + 'px';
-				}
-			}
-		myMove();
-		</script>
-		<br>
 		<hr>
                 <form action="draw.php" method="post">
                         <input type="submit" value="Playground">
