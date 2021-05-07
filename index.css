@@ -17,14 +17,12 @@ input {
 }
 #one {
 	width: 10em;
-	height: 100%;
 	float:left;
 	font-family: Arial, Helvatica, sans-serif;
 }
 
 #svglinks {
 	width: 10em;
-	height: 100%;
 	float:left;
 	font-family: Arial, Helvatica, sans-serif;
 	text-align: center;
