@@ -14,7 +14,8 @@
 		$query->execute([$creation, $author, $text]);
 		header('location: index.php');
 	} catch (PDOException $e) {
-			echo "WRONG!" . $e->getMessage();
+		echo "WRONG! PDO failed";
+		throw new Exception($e->getMessage());
 	}
 ?>
 

@@ -19,7 +19,8 @@
 		$query->execute([$keyword, $id]);
 		echo "id = $id, text = $text";
 	} catch (PDOException $e) {
-			echo "WRONG!" . $e->getMessage();
+		echo "WRONG! PDO failed";
+		throw new Exception($e->getMessage());
 	}
 ?>
 

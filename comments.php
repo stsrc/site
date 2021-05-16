@@ -86,7 +86,8 @@ try {
 				echo "Log in to write comments";
 			}
 		} catch (PDOException $e) {
-			echo "WRONG! " . $e->getMessage();
+			echo "WRONG! PDO failed";
+			throw new Exception($e->getMessage());
 		}
 		?>
 		</div>

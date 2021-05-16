@@ -24,8 +24,12 @@
 			}
 
 			$password_hashed=hash('sha256', $newPassword);
-
-			$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
+			try {
+				$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
+			} catch (PDOException $e) {
+				echo "WRONG! PDO failed";
+				throw new Exception($e->getMessage());
+			}
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$query=$pdo->prepare('SELECT * FROM users WHERE email=?');
 			$query->execute([$email]);

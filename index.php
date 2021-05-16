@@ -54,7 +54,12 @@ check_ssl();
 		Keywords:<br>
 		<?php
 			include 'secretpasswords.php';
-			$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
+			try {
+				$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
+			} catch (PDOException $e) {
+				echo "WRONG! PDO failed";
+				throw new Exception($e->getMessage());
+			}
 			$query=$pdo->prepare('SELECT DISTINCT keyword FROM blog');
 			$query->execute();
 			$query->setFetchMode(PDO::FETCH_NUM); //TODO: what does it do?
@@ -143,7 +148,8 @@ try {
 			}
 			echo "<hr>";
 		} catch (PDOException $e) {
-			echo "WRONG!" . $e->getMessage();
+			echo "WRONG! PDO failed";
+			throw new Exception($e->getMessage());
 		}
 ?>
 		<form action="select.php" method="post">

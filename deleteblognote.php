@@ -10,7 +10,12 @@
 <body>
 <?php
 	include 'secretpasswords.php';
-	$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
+	try {
+		$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
+	} catch (PDOException $e) {
+		echo "WRONG! PDO failed";
+		throw new Exception($e->getMessage());
+	}
 
 	$countquery=$pdo->prepare('SELECT COUNT(*) FROM blog');
 	$countquery->execute();

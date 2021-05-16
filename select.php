@@ -20,7 +20,8 @@ try {
 	$query->setFetchMode(PDO::FETCH_NUM); //TODO: what does it do?
 	$count = $query->fetch();
 } catch (PDOException $e) {
-	echo "WRONG!" . $e->getMessage();
+	echo "WRONG! PDO failed";
+	throw new Exception($e->getMessage());
 }
 
 

@@ -66,7 +66,9 @@
 			}
 
 		} catch (PDOException $e) {
-			$msg = "WRONG! " . $e->getMessage();
+			$msg = "WRONG! PDO failed";
+			echo $msg;
+			throw new Exception($e->getMessage());
 		}
 	}
 ?>

@@ -15,7 +15,12 @@
 <?php
 	$toremove=$_POST["notes"];
 	include 'secretpasswords.php';
-	$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
+	try {
+		$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
+	} catch (PDOException $e) {
+		echo "WRONG! PDO failed";
+		throw new Exception($e->getMessage());
+	}
 	$query=$pdo->prepare("DELETE FROM blog where blog_id=?");
 	$query->execute([$toremove]);
 

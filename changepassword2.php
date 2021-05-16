@@ -33,7 +33,12 @@
 		header('Refresh: 3; URL=changepassword.php');
 	} else {
 		include 'secretpasswords.php';
-		$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
+		try {
+			$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
+		} catch (PDOException $e) {
+			echo "WRONG! PDO failed";
+			throw new Exception($e->getMessage());
+		}
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$query=$pdo->prepare('SELECT * FROM users WHERE email=? and username=? and password=?');
 		$query->execute([$email, $username, $oldPassword_hashed]);
