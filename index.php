@@ -57,7 +57,7 @@ check_ssl();
 			try {
 				$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
 			} catch (PDOException $e) {
-				echo "WRONG! PDO failed";
+				echo "WRONG! PDO failed. Error code 0";
 				throw new Exception($e->getMessage());
 			}
 			$query=$pdo->prepare('SELECT DISTINCT keyword FROM blog');
@@ -74,8 +74,8 @@ check_ssl();
 			echo "</form>";
 ?>
 		<hr>
+		Playground: <br>
 		<form action="draw.php" method="post">
-			Playground: <br>
                         <input type="submit" value="Draw lines">
 		</form>
 		<hr>
@@ -132,7 +132,8 @@ try {
 			for ($i = $_SESSION['maximal_blog']; $i >= $_SESSION['minimal_blog']; $i--) {
 				$row = $query->fetch();
 				echo "<hr>";
-				echo "$row[1]";
+				echo "$row[1], ";
+				echo "id: <a href=\"post.php?postid=$row[0]\">$row[0]</a>";
 				echo "<br>";
 				echo "$row[2]";
 				echo "<br>";
@@ -141,9 +142,8 @@ try {
 				$queryCount = $pdo->prepare('SELECT COUNT(*) FROM comments where blog_id=?');
 				$queryCount->execute([$row[0]]);
 				$countComments=$queryCount->fetch();
-				echo "<form action=\"comments.php\" method=\"post\">";
+				echo "<form action=\"post.php?postid=$row[0]\" method=\"post\">";
 				echo "<input type=\"submit\" name=\"submit\" value=\"Comments (" . $countComments[0] . ")\" style=\" width:10em;\">"; //TODO; hovering?
-				echo "<input type=\"hidden\" name=\"hidden\" value=\"$row[0]\">";
 				echo "</form>";
 			}
 			echo "<hr>";
