@@ -133,7 +133,7 @@ try {
 				$row = $query->fetch();
 				echo "<hr>";
 				echo "$row[1] ";
-				echo "<a href=\"post.php?postid=$row[0]\" style=\"color: gray; text-decoration: none\">id: $row[0]</a>";
+				echo "<a href=\"post.php?postid=$row[0]\" style=\"color: gray; text-decoration: underline\">id: $row[0]</a>";
 				echo "<br>";
 				echo "$row[2]";
 				echo "<br>";
