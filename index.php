@@ -25,7 +25,7 @@ check_ssl();
 				Wrong password!
 				<?php $_SESSION['wrongpassword'] = false; ?>
 				<?php } ?>
-				<a href="forgotpassword.php" style="color: gray; text-decoration: none">Forgot password</a>
+				<a href="forgotpassword.php" style="color: black; text-decoration: none">Forgot password</a>
 				<input type="submit" value="Submit">
 			</form>
 			<form action="register.php" method="post">
