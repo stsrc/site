@@ -9,6 +9,7 @@ check_ssl();
 
 	<head>
 		<link rel="stylesheet" href="index.css" type="text/css">
+		<meta charset="UTF-8">
 	</head>
 	<body>
 	<div id="header">
@@ -57,7 +58,7 @@ check_ssl();
 			try {
 				$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);
 			} catch (PDOException $e) {
-				echo "WRONG! PDO failed";
+				echo "WRONG! PDO failed:" . $e->getMessage();
 				throw new Exception($e->getMessage());
 			}
 			$query=$pdo->prepare('SELECT DISTINCT keyword FROM blog');
@@ -85,8 +86,8 @@ check_ssl();
 			<a href="mailto:gotfrydkonrad@gmail.com"><img src="svg/mail.svg" alt="mail" style="width:24px; height:24px;"></a>
 		</div>
 		</div>
+		<hr style="margin-left:1em">
 		<div id="two">
-
 <?php
 try {
 			include 'secretpasswords.php';
@@ -131,12 +132,14 @@ try {
 
 			for ($i = $_SESSION['maximal_blog']; $i >= $_SESSION['minimal_blog']; $i--) {
 				$row = $query->fetch();
-				echo "<hr>";
 				echo "$row[1]";
 				echo "<br>";
 				echo "$row[2]";
 				echo "<br>";
+				echo "<hr style=\"color:LightGrey\">";
+				echo "<div id=\"three\">";
 				echo "$row[3]";
+				echo "</div>";
 				echo "<br>";
 				$queryCount = $pdo->prepare('SELECT COUNT(*) FROM comments where blog_id=?');
 				$queryCount->execute([$row[0]]);
@@ -145,8 +148,8 @@ try {
 				echo "<input type=\"submit\" name=\"submit\" value=\"Comments (" . $countComments[0] . ")\" style=\" width:10em;\">"; //TODO; hovering?
 				echo "<input type=\"hidden\" name=\"hidden\" value=\"$row[0]\">";
 				echo "</form>";
+				echo "<hr>";
 			}
-			echo "<hr>";
 		} catch (PDOException $e) {
 			echo "WRONG! PDO failed";
 			throw new Exception($e->getMessage());

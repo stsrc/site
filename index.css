@@ -33,6 +33,12 @@ input {
 	font-family: Arial, Helvatica, sans-serif;
 }
 
+#three {
+	font-family: Arial, Helvatica, sans-serif;
+	width: 70em;
+	word-wrap: break-word;
+}
+
 pre code {
 	background-color: #eee;
 	border: 1px solid #999;
