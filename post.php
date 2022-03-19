@@ -23,7 +23,8 @@ try {
 				$text=$_POST["comment"];
 				$text_ok = preg_match('~^.{6,500}$~i', $text);
 				$captcha_ok = !strcmp($_POST["captcha"], $_SESSION["oldcaptcha"]);
-				$blog_id = $_POST['hidden'];
+				parse_str($_SERVER['QUERY_STRING']);
+				$blog_id = $postid;
 				if ($text_ok && $captcha_ok) {
 					include 'secretpasswords.php';
 					$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);	//TODO remove this boilerplate code
@@ -34,8 +35,8 @@ try {
 					$query->execute([$blog_id, $creation, $author, $text]);
 				}
 			}
-
-			$blog_id = $_POST['hidden'];
+			parse_str($_SERVER['QUERY_STRING']);
+			$blog_id = $postid;
 			include 'secretpasswords.php';
 			$pdo = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $user, $password);//TODO remove this boilerplate code
 			$query = $pdo->prepare('SELECT * FROM blog WHERE blog_id=?');
@@ -67,7 +68,7 @@ try {
 			}
 			echo "<hr>";
 			if (isset($_SESSION["username"])) {
-				echo "<form action=\"comments.php\" method=\"post\">";
+				echo "<form action=\"post.php?postid=$postid\" method=\"post\">";
 				echo "<textarea name=\"comment\" rows=20 cols=100 style=\"resize:none\">";
 				echo "</textarea><br>";
 				if (isset($text_ok) && !$text_ok) {
@@ -80,7 +81,6 @@ try {
 				echo '<img src="' . $_SESSION['captcha']['image_src'] . '" alt="CAPTCHA code"><br>';
 				echo "<input type=\"text\" name=\"captcha\" placeholder=\"enter captcha here\" style=\"background-color: LightGrey; width: 160px;\"><br><br>";
 				echo "<input type=\"submit\" value=\"send note\" style=\"width: 160px\">";
-				echo "<input type=\"hidden\" name=\"hidden\" value=\"$blog_id\">";
 				echo "</form>";
 			} else {
 				echo "Log in to write comments";
