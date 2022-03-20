@@ -8,7 +8,7 @@ check_ssl();
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<head>
-		<link rel="stylesheet" href="index.css?version=1" type="text/css">
+		<link rel="stylesheet" href="index.css?version=2" type="text/css">
 		<meta charset="UTF-8">
 	</head>
 	<body>
