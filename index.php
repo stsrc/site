@@ -8,7 +8,7 @@ check_ssl();
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<head>
-		<link rel="stylesheet" href="index.css?version=2" type="text/css">
+		<link rel="stylesheet" href="index.css?version=3" type="text/css">
 		<meta charset="UTF-8">
 	</head>
 	<body>
@@ -86,8 +86,8 @@ check_ssl();
 			<a href="mailto:gotfrydkonrad@gmail.com"><img src="svg/mail.svg" alt="mail" style="width:24px; height:24px;"></a>
 		</div>
 		</div>
-		<hr style="margin-left:1em">
 		<div id="two">
+		<hr>
 <?php
 try {
 			include 'secretpasswords.php';

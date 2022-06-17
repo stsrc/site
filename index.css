@@ -39,13 +39,6 @@ input {
 	word-wrap: break-word;
 }
 
-pre code {
-	background-color: #eee;
-	border: 1px solid #999;
-	display: block;
-	padding: 10px;
-}
-
 @media (max-width:800px){
 	input {
 	    border: none;
