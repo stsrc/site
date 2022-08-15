@@ -83,6 +83,12 @@ input {
 		font-family: Arial, Helvatica, sans-serif;
 		overflow: hidden;
         }
+
+	#three {
+		font-family: Arial, Helvatica, sans-serif;
+		width: 100%;
+		word-wrap: break-word;
+	}
 }
 
 input[type=submit] {
