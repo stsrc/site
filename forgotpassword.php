@@ -3,7 +3,11 @@
 	check_ssl();
 	session_start();
 	include("simple-php-captcha.php");
-	$_SESSION['captcha'] = simple_php_captcha();
+	try {
+		$_SESSION['captcha'] = simple_php_captcha();
+	} catch (Exception $e) {
+		echo "simple_php_captcha() exception. " . $e->getMessage();
+	}
 ?>
 
 <head>
