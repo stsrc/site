@@ -73,7 +73,7 @@
 	}
 ?>
 <html>
-<body>
- <?php echo $msg ?>
-</body>
+	<body>
+		 <?php echo $msg ?>
+	</body>
 </html>
