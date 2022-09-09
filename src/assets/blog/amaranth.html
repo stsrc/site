@@ -1,0 +1,19 @@
+<h1>Amaranth</h1>
+
+<h2>FPGA python framework</h2>
+
+There are few interesting quirks in this language, which are not present in Verilog/VHDL. Thanks to the python, this framework is easy to work with.
+<h2>First of all: clock domains.</h2>
+In Verilog/VHDL to create synchronous logic you have to use clock signal. In Amaranth you don't need to, what saves a lot of line of codes. To create register, you have define a signal with: <br> <code> nameOfSignal = Signal() </code><br> and then somewhere assign some value to it:<br>
+<code>m.d.sync += nameOfSignal.eq(1) </code> what causes <code> nameOfSignal </code> to be equal 1 in synchronous domain. Variable m is a Module(), d is domain, a sync is a synchronous domain.
+
+<h2>Secondly: types of operations.</h2>
+
+Amaranth is really intersting when it comes to types of operations. In VHDL do increase counter you have to cast register few times. In Amaranth, you simply need to define register:
+<code> nameOfSignal = Signal(5) </code> and then somewhere add value to the counter: <code> m.d.sync += nameOfSignal.eq(nameOfSignal + 1) </code>
+
+<h2>Thirdly and lastly: everything from command line.</h2>
+
+The great feature of this framework is possiblity to use command line, without need to use clumsy applications like Quartus.<br><br>
+
+More information can be found on <a href="https://github.com/amaranth-lang/amaranth">amaranth official site</a>, or look in existing projects, like this <a href="https://github.com/amaranth-community-unofficial/deca-usb2-audio-interface">USB audio interface on DECA board</a>.
