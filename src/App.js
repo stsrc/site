@@ -1,14 +1,41 @@
+//TODO: sql on github.io?
+
 import './App.css';
 import pic_github from './assets/github.svg';
 import pic_mail from './assets/mail.svg';
 import pic_linkedin from './assets/linkedin.svg';
 
+import React, { Component } from 'react'
+import ReactMarkdown from 'react-markdown'
+import pizzaPath from './assets/blog/pizza.md'
+
+class TestName extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = { terms: null }
+  }
+
+  componentWillMount() {
+    fetch(pizzaPath).then((response) => response.text()).then((text) => { //TODO: warning in console
+      this.setState({ terms: text })
+    })
+  }
+
+  render() {
+    return (
+//      <ReactMarkdown>Happy **life**</ReactMarkdown>
+      <ReactMarkdown>{this.state.terms}</ReactMarkdown>
+    )
+  }
+}
+
 function App() {
   return (
     <div id="container">
       <div id="one">
-	Konrad Gotfryd site<br/>
-	Open minded embedded developer willing to learn about other technologies (android, web) 
+	Konrad Gotfryd's site<br/>
+	Embedded developer willing to learn about other technologies (android, web) 
 	<div id="svglinks">
   	  <a href="https://github.com/stsrc"><img src={pic_github} alt="github" style={{
 	    width: '24px',
@@ -25,7 +52,8 @@ function App() {
 	</div>
       </div>
       <div id="two">
-        Hello world.
+	<h1>Yet another fancy site.</h1>
+        <TestName />
       </div>
     </div>
   );
