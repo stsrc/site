@@ -7,7 +7,8 @@ function App() {
   return (
     <div id="container">
       <div id="one">
-	Konrad Gotfryd site
+	Konrad Gotfryd site<br/>
+	Open minded embedded programmer willing to learn about other technologies (android, web) 
 	<div id="svglinks">
   	  <a href="https://github.com/stsrc"><img src={pic_github} alt="github" style={{
 	    width: '24px',
