@@ -9,7 +9,7 @@ import React, { Component } from 'react'
 import ReactMarkdown from 'react-markdown'
 import pizzaPath from './assets/blog/pizza.md'
 
-class TestName extends Component {
+class BlogNote extends Component {
   constructor(props) {
     super(props)
 
@@ -54,7 +54,7 @@ function App() {
  	<div id="header">
 	  <h1>Yet another fancy site.</h1>
 	</div>
-        <TestName />
+        <BlogNote />
       </div>
     </div>
   );
