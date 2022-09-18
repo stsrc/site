@@ -24,7 +24,6 @@ class TestName extends Component {
 
   render() {
     return (
-//      <ReactMarkdown>Happy **life**</ReactMarkdown>
       <ReactMarkdown>{this.state.terms}</ReactMarkdown>
     )
   }
@@ -52,7 +51,9 @@ function App() {
 	</div>
       </div>
       <div id="two">
-	<h1>Yet another fancy site.</h1>
+ 	<div id="header">
+	  <h1>Yet another fancy site.</h1>
+	</div>
         <TestName />
       </div>
     </div>
