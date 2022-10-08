@@ -34,7 +34,7 @@ function App() {
     <div id="container">
       <div id="one">
 	Konrad Gotfryd's site<br/>
-	Embedded developer willing to learn about other technologies (android, web) 
+	Embedded developer
 	<div id="svglinks">
   	  <a href="https://github.com/stsrc"><img src={pic_github} alt="github" style={{
 	    width: '24px',
